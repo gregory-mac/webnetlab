@@ -8,7 +8,9 @@ Lab list
     <div class="container-fluid">
     {% if lab_dir_list %}
         {% for lab_dir in lab_dir_list %}
-            <li>{{ lab_dir }}</li>
+            <li>
+                <a href={{ lab_dir }}>{{ lab_dir }}</a>
+            </li>
         {% endfor %}
     {% else %}
         <div><strong>No labs exist</strong></div>

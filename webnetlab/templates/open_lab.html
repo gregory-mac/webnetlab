@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if lab_details.name %}
+        {{ lab_details.name }}
+    {% else %}
+        Nameless lab
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div>
+            {% if lab_details.description %}
+                {{ lab_details.description }}
+            {% else %}
+                No description
+            {% endif %}
+        </div>
+        <div>
+            {% if lab_details.goals %}
+                {% for goal in lab_details.goals %}
+                <li>{{ goal }}</li>
+                {% endfor %}
+            {% else %}
+                No goals set
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
