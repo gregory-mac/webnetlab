@@ -39,3 +39,8 @@ def list_labs_view(request: Request):
 def open_lab_view(request: Request, lab_name: str):
     lab_details = parse_lab_specification(settings.path_to_lab_files / lab_name / settings.lab_spec_filename)
     return templates.TemplateResponse("open_lab.html", {"request": request, "lab_details": lab_details})
+
+
+@router.post("/{lab_name}/deploy", status_code=204)
+def deploy_lab(request: Request, lab_name: str):
+    print(f"Lab {lab_name} is deployed")
