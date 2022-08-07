@@ -3,7 +3,7 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
-    path_to_lab_files: Path = Path("/home/gregory/test-lab-files")
+    path_to_lab_files: Path = Path("/home/macheev/containerlab-test/")
     lab_spec_filename: str = "lab_specification.yml"
 
 
