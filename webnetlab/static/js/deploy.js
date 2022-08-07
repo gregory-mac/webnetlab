@@ -15,7 +15,7 @@ function unlock_button() {
 }
 
 $(function(){
-	$("button[name='deploy']").click(function(){
+	$("button[name='deploy']").on("click", function(){
 		lock_button();
         let lab_name = window.location.pathname.split("/").pop()
 		$.ajax({
