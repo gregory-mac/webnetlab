@@ -41,6 +41,9 @@ def open_lab_view(request: Request, lab_name: str):
     return templates.TemplateResponse("open_lab.html", {"request": request, "lab_details": lab_details})
 
 
-@router.post("/{lab_name}/deploy", status_code=204)
+@router.post("/{lab_name}/deploy", status_code=200)
 def deploy_lab(request: Request, lab_name: str):
+    from time import sleep
+    sleep(2)
     print(f"Lab {lab_name} is deployed")
+    return {"msg": "lab is deployed"}
