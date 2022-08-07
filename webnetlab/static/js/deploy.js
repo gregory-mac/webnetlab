@@ -30,8 +30,8 @@ $(function(){
                 }
             },
 			error: function(error){
-				console.log(error);
 				unlock_button();
+				console.log(error);
 			}
 		});
 	});
