@@ -14,9 +14,9 @@ from webnetlab.dependencies import templates
 router = APIRouter(prefix="/lab")
 
 
-def scan_for_lab_folders(path: Path) -> List[str]:
+def scan_for_lab_folders(path: str) -> List[str]:
     lab_list = []
-    for lab_dir in path.iterdir():
+    for lab_dir in Path(path).iterdir():
         lab_list.append(str(lab_dir.name))
     return lab_list
 
@@ -49,6 +49,6 @@ def open_lab_view(request: Request, lab_name: str):
 
 @router.post("/{lab_name}/deploy", status_code=200)
 def deploy_lab_button(lab_name: str):
-    path_to_clab_yaml = f"{lab_name}.clab.yml"
+    path_to_clab_yaml = f"{settings.path_to_lab_files}{lab_name}/{lab_name}.clab.yml"
     deploy_lab(path_to_clab_yaml)
     return {"success": "lab is deployed"}
