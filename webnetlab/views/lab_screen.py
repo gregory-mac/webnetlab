@@ -43,7 +43,7 @@ def list_labs_view(request: Request):
 
 @router.get("/{lab_name}", status_code=200, response_class=HTMLResponse)
 def open_lab_view(request: Request, lab_name: str):
-    lab_details = parse_lab_specification(settings.path_to_lab_files / lab_name / settings.lab_spec_filename)
+    lab_details = parse_lab_specification(Path(settings.path_to_lab_files) / lab_name / settings.lab_spec_filename)
     return templates.TemplateResponse("open_lab.html", {"request": request, "lab_details": lab_details})
 
 
