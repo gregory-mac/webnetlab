@@ -48,7 +48,7 @@ def open_lab_view(request: Request, lab_name: str):
 
 
 @router.post("/{lab_name}/deploy", status_code=200)
-def deploy_lab_button(request: Request, lab_name: str):
+def deploy_lab_button(lab_name: str):
     path_to_clab_yaml = f"{lab_name}.clab.yml"
     deploy_lab(path_to_clab_yaml)
     return {"success": "lab is deployed"}

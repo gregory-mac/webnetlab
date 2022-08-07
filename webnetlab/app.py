@@ -2,6 +2,8 @@ from fastapi import FastAPI, Depends
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
+from webnetlab.settings import settings
+
 from views.lab_screen import router as lab_screen_router
 
 
@@ -17,4 +19,9 @@ def root():
 
 if __name__ == "__main__":
     from uvicorn import run
-    run("app:app", host="0.0.0.0", port=8080, workers=1, reload=True)
+    run("app:app",
+        host=settings.server_ip,
+        port=settings.server_port,
+        workers=settings.worker_count,
+        reload=settings.reload_app_on_change,
+        )
