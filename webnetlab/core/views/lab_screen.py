@@ -1,18 +1,14 @@
 from pathlib import Path
 
-from fastapi import Request
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 
-from api.functions.lab import get_node_information, parse_lab_specification, scan_for_lab_folders
+from api.functions.lab import get_node_information, parse_lab_specification
 from core.settings import settings
 from api.dependencies import templates
-from api.v1.lab import router
 
 
-@router.get("/", status_code=200, response_class=HTMLResponse)
-def list_labs_view(request: Request):
-    lab_dir_list = scan_for_lab_folders(settings.path_to_lab_files)
-    return templates.TemplateResponse("list_labs.html", {"request": request, "lab_dir_list": lab_dir_list})
+router = APIRouter(prefix="/open")
 
 
 @router.get("/{lab_name}", status_code=200, response_class=HTMLResponse)

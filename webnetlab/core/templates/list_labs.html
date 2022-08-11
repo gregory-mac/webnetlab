@@ -9,7 +9,7 @@ Lab list
     {% if lab_dir_list %}
         {% for lab_dir in lab_dir_list %}
             <li>
-                <a href={{ lab_dir }}>{{ lab_dir }}</a>
+                <a href={{ "/lab/open/" + lab_dir }}>{{ lab_dir }}</a>
             </li>
         {% endfor %}
     {% else %}
@@ -17,4 +17,3 @@ Lab list
     {% endif %}
     </div>
 {% endblock %}
-

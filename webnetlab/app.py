@@ -3,11 +3,11 @@ from fastapi.staticfiles import StaticFiles
 
 from core.settings import settings
 
-from core.views.lab_screen import router as lab_screen_router
+from api.v1.lab import router as router_lab
 
 
 app = FastAPI(title="NetLab")
-app.include_router(lab_screen_router)
+app.include_router(router_lab)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
