@@ -10,24 +10,30 @@
 
 {% block body %}
     <div class="container-fluid">
-        <div>
-            {% if lab_details.description %}
-                {{ lab_details.description }}
-            {% else %}
-                No description
-            {% endif %}
-        </div>
-        <div>
-            {% if lab_details.goals %}
-                {% for goal in lab_details.goals %}
-                <li>{{ goal }}</li>
-                {% endfor %}
-            {% else %}
-                No goals set
-            {% endif %}
-        </div>
-    <br>
-    <button class="btn btn-lg btn-primary btn-block" type="button" name="deploy">Deploy lab</button>
+        {% if lab_details.error %}
+            <div>
+                {{ lab_details.error }}
+            </div>
+        {% else %}
+            <div>
+                {% if lab_details.description %}
+                    {{ lab_details.description }}
+                {% else %}
+                    No description
+                {% endif %}
+            </div>
+            <div>
+                {% if lab_details.goals %}
+                    {% for goal in lab_details.goals %}
+                    <li>{{ goal }}</li>
+                    {% endfor %}
+                {% else %}
+                    No goals set
+                {% endif %}
+            </div>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="button" name="deploy">Deploy lab</button>
+    {% endif %}
     <br>
     <a href={{ url_for("list_labs_view") }}>
         <button class="btn btn-lg btn-primary btn-block" type="button" name="lablist">Back to lab list</button>
