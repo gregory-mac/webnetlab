@@ -1,6 +1,6 @@
 from core.settings import settings
 from api.functions.lab import deploy_lab, destroy_lab
-from fastapi import APIRouter, Request
+from fastapi import APIRouter
 from fastapi.responses import RedirectResponse
 
 from core.views.lab_screen import router as router_lab_screen
@@ -16,9 +16,8 @@ DEPLOYED_LAB_NAME = ""
 
 
 @router.get("/", response_class=RedirectResponse, status_code=303)
-def root(request: Request):
+def root():
     return router.url_path_for("list_labs_view")
-    # return request.url_for("list_labs_view")
 
 
 @router.post("/status", status_code=200)
