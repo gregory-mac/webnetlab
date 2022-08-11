@@ -16,15 +16,6 @@ DEPLOYED_LAB = False
 DEPLOYED_LAB_NAME = ""
 
 
-@router.post("/status", status_code=200)
-def check_lab_status():
-    global DEPLOYED_LAB
-    global DEPLOYED_LAB_NAME
-    status = {"is_running": DEPLOYED_LAB,
-              "lab_name": DEPLOYED_LAB_NAME}
-    return status
-
-
 def scan_for_lab_folders(path: str) -> List[str]:
     lab_list = []
     for lab_dir in Path(path).iterdir():
@@ -118,3 +109,12 @@ def destroy_lab_button(lab_name: str):
         return {"success": "lab is destroyed"}
     except Exception as e:
         return {"error": "something went wrong while stopping the lab, {}".format(e)}
+
+
+@router.post("/status", status_code=200)
+def check_lab_status():
+    global DEPLOYED_LAB
+    global DEPLOYED_LAB_NAME
+    status = {"is_running": DEPLOYED_LAB,
+              "lab_name": DEPLOYED_LAB_NAME}
+    return status
