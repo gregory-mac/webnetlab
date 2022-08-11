@@ -8,7 +8,7 @@ from api.v1.lab import router as router_lab
 
 app = FastAPI(title="NetLab")
 app.include_router(router_lab)
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="core/static"), name="static")
 
 
 @app.get("/")
