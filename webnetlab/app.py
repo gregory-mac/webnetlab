@@ -1,10 +1,9 @@
-from fastapi import FastAPI, Depends
-from fastapi.templating import Jinja2Templates
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from webnetlab.settings import settings
+from core.settings import settings
 
-from views.lab_screen import router as lab_screen_router
+from core.views.lab_screen import router as lab_screen_router
 
 
 app = FastAPI(title="NetLab")
