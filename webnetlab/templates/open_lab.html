@@ -31,6 +31,20 @@
                     No goals set
                 {% endif %}
             </div>
+        {% if node_info.error %}
+            <div>
+                {{ node_info.error }}
+            </div>
+        {% else %}
+            {% for node in node_info recursive %}
+            <li>
+                Name: {{ node }}
+                Kind: {{ node_info[node]["kind"] }}
+                Image: {{ node_info[node]["image"] }}
+                Mgmt IP: {{ node_info[node]["mgmt_ip"] }}
+            </li>
+            {% endfor %}
+        {% endif %}
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="button" name="deploy">Deploy lab</button>
         <br>
