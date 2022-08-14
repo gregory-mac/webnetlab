@@ -1,0 +1,55 @@
+{
+  "name": "inet-henge",
+  "version": "1.2.1",
+  "description": "Generate d3.js based Network Diagram from JSON data.",
+  "license": "MIT",
+  "keywords": [
+    "network",
+    "diagram",
+    "d3.js",
+    "cola.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/codeout/inet-henge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codeout/inet-henge/issues"
+  },
+  "author": {
+    "name": "Shintaro Kojima",
+    "email": "goodies@codeout.net",
+    "url": "http://github.com/codeout"
+  },
+  "main": "inet-henge.js",
+  "devDependencies": {
+    "@types/d3": "~3",
+    "@types/node": "^14.17.19",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "d3": "~3",
+    "eslint": "^7.3.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "lodash.clonedeep": "^4.5.0",
+    "md5": "^2.3.0",
+    "prettier": "^2.4.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.3",
+    "webcola": "^3.4.0",
+    "webpack": "^5.54.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "scripts": {
+    "lint": "npx eslint $INIT_CWD/src",
+    "build": "cd $INIT_CWD && npm run clean && npm run dev && npm run prod",
+    "tsc": "npx tsc --build $INIT_CWD/tsconfig.json",
+    "dev": "npx webpack --config $INIT_CWD/webpack.dev.js",
+    "prod": "npx webpack --config $INIT_CWD/webpack.prod.js",
+    "clean": "rm -rf $INIT_CWD/{inet-henge*.js*, plugin*.js*, dist}",
+    "watch": "npx webpack --config $INIT_CWD/webpack.dev.js --watch",
+
+    "build-all": "npm run build && for i in plugins/*; do cd $i; npm run build; cd -; done"
+  }
+}

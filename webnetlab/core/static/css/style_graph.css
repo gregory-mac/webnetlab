@@ -1,0 +1,87 @@
+.input {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.select {
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.level:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.group rect {
+    opacity: 0.5;
+}
+
+.node,
+.group rect {
+    cursor: move;
+}
+
+.link text {
+    cursor: default;
+}
+
+.node rect,
+.group rect {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.node text {
+    font-size: 11px;
+}
+
+.link line {
+    stroke: #a6a6a6;
+    stroke-width: 3px;
+    stroke-opacity: 1;
+}
+
+.link text {
+    font-size: 7px;
+}
+
+.link text:hover tspan,
+.link text.hover tspan {
+    fill: #00B0E8;
+    font-weight: bold;
+    visibility: visible !important;
+    stroke: #000;
+    stroke-width: 0.4px;
+}
+
+.link text.hover tspan {
+    font-size: 10px;
+}
+
+.link line:hover {
+    stroke: #00B0E8;
+}
+
+.tooltip {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tooltip path {
+    stroke: #e2ddd9;
+    stroke-width: 3px;
+}
+
+.tooltip .name {
+    fill: #8d7966;
+}
+
+.tooltip a {
+    text-decoration: underline;
+    fill: #58a6ff;
+}
+
+.loopback,
+.interface {
+    fill: #333;
+}

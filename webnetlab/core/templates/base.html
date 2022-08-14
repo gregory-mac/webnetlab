@@ -4,10 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href={{ url_for("static", path="css/style_graph.css") }}/>
+
     <script src={{ url_for("static", path="js/jquery-3.6.0.min.js") }}></script>
+    <script src={{ url_for("static", path="js/d3/d3.min.js") }}></script>
+    <script src={{ url_for("static", path="js/inet-henge/vendor/cola.min.js") }}></script>
+    <script src={{ url_for("static", path="js/inet-henge/inet-henge.min.js") }}></script>
+
     <script src={{ url_for("static", path="js/deploy.js") }}></script>
     <script src={{ url_for("static", path="js/destroy.js") }}></script>
     <script src={{ url_for("static", path="js/check_status.js") }}></script>
+    <script src={{ url_for("static", path="js/graph.js") }}></script>
     <title>
         {% block title %}
             Base Title

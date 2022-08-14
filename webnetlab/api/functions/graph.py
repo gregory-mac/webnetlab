@@ -6,7 +6,7 @@ from core.settings import settings
 
 
 def get_icon_path(kind: str) -> str:
-    return "static/images/" + kind + ".png"
+    return "/static/images/" + kind + ".png"
 
 
 def load_nodes_and_links(lab_name: str) -> tuple or dict:
