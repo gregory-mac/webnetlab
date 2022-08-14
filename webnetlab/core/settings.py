@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     reload_app_on_change: bool = os.getenv("WEBNETLAB_SERVER_RELOAD")
 
     database_uri: str = os.getenv("WEBNETLAB_SQLALCHEMY_DATABASE_URI")
+    database_echo: bool = os.getenv("WEBNETLAB_DATABASE_ECHO")
 
 
 settings = Settings()
