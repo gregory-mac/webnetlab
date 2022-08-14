@@ -6,7 +6,7 @@ from webnetlab.api.functions.graph import create_topology
 router = APIRouter(prefix="/graph")
 
 
-@router.get("/", response_class=RedirectResponse, status_code=200)
+@router.get("/", status_code=200)
 def root():
     return "Graphs root"
 
