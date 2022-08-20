@@ -1,4 +1,4 @@
-from typing import Optional, MutableMapping, List, Union
+from typing import Optional
 from datetime import datetime, timedelta
 
 from fastapi.security import OAuth2PasswordBearer
@@ -9,10 +9,6 @@ from core import models
 from core import auth
 from core.settings import settings
 
-
-JWTPayloadMapping = MutableMapping[
-    str, Union[datetime, bool, str, List[str], List[int]]
-]
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
