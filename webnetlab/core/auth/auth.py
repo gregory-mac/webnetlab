@@ -26,7 +26,7 @@ def authenticate(login: str, password: str, db: Session) -> Optional[models.user
     return user
 
 
-def create_access_token(sub: str) -> str:
+def create_access_token(sub: str or int) -> str:
     return _create_token(
         token_type="access_token",
         lifetime=timedelta(minutes=settings.jwt_token_expiry),

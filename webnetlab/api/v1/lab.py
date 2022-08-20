@@ -1,13 +1,14 @@
 from core.settings import settings
 from api.functions.lab import deploy_lab, destroy_lab
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from fastapi.responses import RedirectResponse
 
+from api import dependencies
 from core.views.lab_screen import router as router_lab_screen
 from core.views.lab_list import router as router_lab_list
 
 
-router = APIRouter(prefix="/lab", tags=["lab"])
+router = APIRouter(prefix="/lab", tags=["lab"], dependencies=[Depends(dependencies.get_current_user)])
 router.include_router(router_lab_screen)
 router.include_router(router_lab_list)
 

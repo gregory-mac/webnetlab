@@ -27,7 +27,7 @@ class TokenData(BaseModel):
     username: Optional[str] = None
 
 
-def get_current_user(db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)) -> models.user.User:
+async def get_current_user(db: Session = Depends(get_db), token: str = Depends(auth.oauth2_scheme)) -> models.user.User:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
