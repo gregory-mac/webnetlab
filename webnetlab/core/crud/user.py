@@ -1,14 +1,20 @@
 from sqlalchemy.orm import Session
 
 from core import models
+from core import schemas
+from core import auth
 
 
-def create(db: Session, login: str, email: str, is_admin: bool = False) -> models.user.User:
-    user = models.user.User(login=login, email=email, is_admin=is_admin)
-    db.add(user)
+def create(db: Session, new_user: schemas.UserCreate) -> models.user.User:
+    create_data = new_user.dict()
+    create_data.pop("password")
+    new_user_in_db = models.user.User(**create_data)
+    new_user_in_db.hashed_password = auth.get_password_hash(new_user.password)
+    db.add(new_user_in_db)
     db.commit()
-    db.refresh(user)
-    return user
+    db.refresh(new_user_in_db)
+
+    return new_user_in_db
 
 
 def delete(db: Session, id: int) -> models.user.User:

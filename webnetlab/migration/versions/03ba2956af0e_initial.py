@@ -24,6 +24,7 @@ def upgrade() -> None:
         sa.Column("login", String(30), nullable=False, unique=True),
         sa.Column("email", String(50), nullable=False, unique=True),
         sa.Column("is_admin", Boolean, nullable=False, unique=False, default=False),
+        sa.Column("hashed_password", String(50), nullable=False),
     )
 
 

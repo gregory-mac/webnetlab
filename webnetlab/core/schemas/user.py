@@ -1,14 +1,17 @@
+from typing import Optional
+
 from pydantic import BaseModel, constr
 
 
 class UserBase(BaseModel):
-    login: constr(max_length=30)
-    email: constr(max_length=30)
+    login: Optional[constr(max_length=30)]
+    email: Optional[constr(max_length=30)] = None
     is_admin: bool = False
 
 
 class UserCreate(UserBase):
-    pass
+    login: constr(max_length=30)
+    password: str
 
 
 class UserUpdate(UserBase):
