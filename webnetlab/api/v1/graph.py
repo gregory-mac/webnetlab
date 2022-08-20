@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from fastapi.responses import RedirectResponse
 
 from webnetlab.api.functions.graph import create_topology
 
