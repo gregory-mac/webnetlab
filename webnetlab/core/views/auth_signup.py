@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/signup", status_code=200, response_class=HTMLResponse)
-def signup(request: Request):
+def signup_view(request: Request):
     ip = settings.server_ip
     port = settings.server_port
     signup_url = f"http://{ip}:{port}/auth/signup"

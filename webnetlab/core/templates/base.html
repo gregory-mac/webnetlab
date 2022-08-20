@@ -29,6 +29,15 @@
         Base body
     {% endblock %}
 
+    <div>
+        <p>User access control</p>
+        <a href={{ url_for("login_view") }}>
+            <button class="btn btn-lg btn-primary btn-block" type="button" name="login-page">Login page</button>
+        </a>
+        <a href={{ url_for("logout") }}>
+            <button class="btn btn-lg btn-primary btn-block" type="button" name="logout">Logout</button>
+        </a>
+    </div>
 </body>
 
 </html>

@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/login", status_code=200, response_class=HTMLResponse)
-def login(request: Request):
+def login_view(request: Request):
     ip = settings.server_ip
     port = settings.server_port
     login_url = f"http://{ip}:{port}/auth/login"

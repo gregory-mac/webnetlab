@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Response, Form
 from fastapi.security import OAuth2PasswordRequestForm
+from fastapi.responses import RedirectResponse
 
 from sqlalchemy.orm.session import Session
 
@@ -42,6 +43,12 @@ def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends(), 
     response.set_cookie(key="access_token", value=f"Bearer {access_token}", httponly=True)
 
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@router.get("/logout", response_class=RedirectResponse, status_code=303)
+async def logout(response: Response):
+    response.delete_cookie("access_token")
+    return router.url_path_for("login_view")
 
 
 @router.get("/me", response_model=schemas.User)
