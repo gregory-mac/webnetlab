@@ -8,7 +8,7 @@ from core.views.lab_screen import router as router_lab_screen
 from core.views.lab_list import router as router_lab_list
 
 
-router = APIRouter(prefix="/lab", tags=["lab"], dependencies=[Depends(dependencies.get_current_user)])
+router = APIRouter(prefix="/lab", tags=["lab"])
 router.include_router(router_lab_screen)
 router.include_router(router_lab_list)
 
@@ -16,7 +16,7 @@ DEPLOYED_LAB = False
 DEPLOYED_LAB_NAME = ""
 
 
-@router.get("/", response_class=RedirectResponse, status_code=303)
+@router.get("/", response_class=RedirectResponse, status_code=303, dependencies=[Depends(dependencies.get_current_user)])
 def root():
     return router.url_path_for("list_labs_view")
 

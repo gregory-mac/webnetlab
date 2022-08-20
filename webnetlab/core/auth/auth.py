@@ -1,16 +1,16 @@
 from typing import Optional
 from datetime import datetime, timedelta
 
-from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm.session import Session
 from jose import jwt
 
 from core import models
 from core import auth
+from api import functions
 from core.settings import settings
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+oauth2_scheme = functions.auth.OAuth2PasswordBearerWithCookie(tokenUrl="/auth/login")
 
 
 def authenticate(login: str, password: str, db: Session) -> Optional[models.user.User]:
