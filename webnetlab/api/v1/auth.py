@@ -10,7 +10,7 @@ from core import auth
 from core import models
 
 
-router = APIRouter(prefix="/auth")
+router = APIRouter(prefix="/auth", tags=["auth"])
 
 
 @router.post("/signup", response_model=schemas.User, status_code=201)

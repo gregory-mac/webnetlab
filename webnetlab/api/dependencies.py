@@ -36,8 +36,8 @@ def get_current_user(db: Session = Depends(get_db), token: str = Depends(auth.oa
     try:
         payload = jwt.decode(
             token,
-            settings.JWT_SECRET,
-            algorithms=[settings.ALGORITHM],
+            settings.jwt_secret,
+            algorithms=[settings.jwt_algorithm],
             options={"verify_aud": False},
         )
         username: str = payload.get("sub")

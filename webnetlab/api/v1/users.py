@@ -6,7 +6,7 @@ from core import crud
 from core import schemas
 from api import dependencies
 
-router = APIRouter(prefix="/users")
+router = APIRouter(prefix="/users", tags=["users"])
 
 
 @router.get("/", status_code=200)

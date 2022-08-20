@@ -7,7 +7,7 @@ from core.views.lab_screen import router as router_lab_screen
 from core.views.lab_list import router as router_lab_list
 
 
-router = APIRouter(prefix="/lab")
+router = APIRouter(prefix="/lab", tags=["lab"])
 router.include_router(router_lab_screen)
 router.include_router(router_lab_list)
 

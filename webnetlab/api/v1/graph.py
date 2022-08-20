@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from webnetlab.api.functions.graph import create_topology
 
-router = APIRouter(prefix="/graph")
+router = APIRouter(prefix="/graph", tags=["graph"])
 
 
 @router.get("/", status_code=200)
