@@ -1,9 +1,8 @@
 function render_graph(topology) {
     $('#diagram').empty();
 
-    // https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
-    const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    const height = window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+    const width  = $('#topology').width();
+    const height = $('#topology').height();
 
     const diagram = new Diagram('#diagram', topology, {
         width: width,
