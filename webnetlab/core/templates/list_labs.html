@@ -1,19 +1,44 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Lab list
+List scenarios
 {% endblock %}
 
 {% block body %}
     <div class="container-fluid">
-    {% if lab_dir_list %}
-        {% for lab_dir in lab_dir_list %}
-            <li>
-                <a href={{ "/lab/open/" + lab_dir }}>{{ lab_dir }}</a>
-            </li>
-        {% endfor %}
-    {% else %}
-        <div><strong>No labs exist</strong></div>
-    {% endif %}
+        <h3 class="text-dark mb-4">Available labs</h3>
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Difficulty</th>
+                                <th>Author</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if lab_table %}
+                            {% for lab in lab_table %}
+                                <tr>
+                                    <td><a href={{ "/lab/open/" + lab }}>{{ lab }}</a></td>
+                                    <td>{{ lab_table[lab]["difficulty"] }}</td>
+                                    <td>{{ lab_table[lab]["author"] }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <div><strong>No labs exist</strong></div>
+                        {% endif %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
