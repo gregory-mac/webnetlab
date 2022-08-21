@@ -2,12 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <link rel="stylesheet" type="text/css" href={{ url_for("static", path="css/style_graph.css") }}/>
+    <link rel="stylesheet" type="text/css" href={{ url_for("static", path="css/bootstrap/bootstrap.min.css") }}>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" type="text/css" href={{ url_for("static", path="fonts/fontawesome-all.min.css") }}>
 
     <script src={{ url_for("static", path="js/jquery/jquery-3.6.0.min.js") }}></script>
+    <script src={{ url_for("static", path="js/bootstrap/bootstrap.min.js") }}></script>
+    <script src={{ url_for("static", path="js/theme.js") }}></script>
     <script src={{ url_for("static", path="js/d3/d3.min.js") }}></script>
     <script src={{ url_for("static", path="js/inet-henge/cola.min.js") }}></script>
     <script src={{ url_for("static", path="js/inet-henge/inet-henge.min.js") }}></script>
@@ -16,6 +21,7 @@
     <script src={{ url_for("static", path="js/destroy.js") }}></script>
     <script src={{ url_for("static", path="js/check_status.js") }}></script>
     <script src={{ url_for("static", path="js/graph.js") }}></script>
+
     <title>
         {% block title %}
             Base Title
@@ -23,20 +29,57 @@
     </title>
 </head>
 
-<body>
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
+                    <div class="sidebar-brand-text mx-3"><span>webnetlab</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="list_labs.html"><i class="fas fa-table"></i><span>Browse scenarios</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="far fa-user-circle"></i><span>Login</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup.html"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid">
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown show no-arrow">
+                                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                                        <span class="d-none d-lg-inline me-2 text-gray-600 small">Logged in as Valerie Luna</span>
+                                    </a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in" data-bs-popper="none">
+                                        <a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
 
-    {% block body %}
-        Base body
-    {% endblock %}
+                                        <div class="dropdown-divider"></div>
 
-    <div>
-        <p>User access control</p>
-        <a href={{ url_for("login_view") }}>
-            <button class="btn btn-lg btn-primary btn-block" type="button" name="login-page">Login page</button>
-        </a>
-        <a href={{ url_for("logout") }}>
-            <button class="btn btn-lg btn-primary btn-block" type="button" name="logout">Logout</button>
-        </a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                {% block body %}
+                    Base body
+                {% endblock %}
+
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>WebNetLab v0.1.0</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
 </body>
 
