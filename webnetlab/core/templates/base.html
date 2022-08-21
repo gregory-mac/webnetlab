@@ -17,6 +17,7 @@
     <script src={{ url_for("static", path="js/inet-henge/cola.min.js") }}></script>
     <script src={{ url_for("static", path="js/inet-henge/inet-henge.min.js") }}></script>
 
+    <script src={{ url_for("static", path="js/current_user.js") }}></script>
     <script src={{ url_for("static", path="js/deploy.js") }}></script>
     <script src={{ url_for("static", path="js/destroy.js") }}></script>
     <script src={{ url_for("static", path="js/check_status.js") }}></script>
@@ -38,7 +39,7 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
+{#                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>#}
                     <li class="nav-item"><a class="nav-link" href="list_labs.html"><i class="fas fa-table"></i><span>Browse scenarios</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="login.html"><i class="far fa-user-circle"></i><span>Login</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="signup.html"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
@@ -54,14 +55,14 @@
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown show no-arrow">
                                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                                        <span class="d-none d-lg-inline me-2 text-gray-600 small">Logged in as Valerie Luna</span>
+                                        <span class="d-none d-lg-inline me-2 text-gray-600 small" id="current-user">Fetching User...</span>
                                     </a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in" data-bs-popper="none">
                                         <a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
 
                                         <div class="dropdown-divider"></div>
 
-                                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                        <a class="dropdown-item" href={{ url_for("logout") }}><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
                                 </div>
                             </li>
