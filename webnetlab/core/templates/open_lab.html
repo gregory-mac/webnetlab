@@ -9,52 +9,78 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
-        {% if lab_details.error %}
-            <div>
-                {{ lab_details.error }}
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="container">
+                <h2>Description</h2>
+                <span>
+                    {% if lab_details.description %}
+                        {{ lab_details.description }}
+                    {% else %}
+                        No description
+                    {% endif %}
+                </span>
             </div>
-        {% else %}
-            <div>
-                {% if lab_details.description %}
-                    {{ lab_details.description }}
+        </div>
+        <div class="col">
+            <div class="container">
+                <h2>Node information</h2>
+                {% if node_info.error %}
+                    <div>
+                    {{ node_info.error }}
+                    </div>
                 {% else %}
-                    No description
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Host</th>
+                                    <th>Kind</th>
+                                    <th>Image</th>
+                                    <th>Mgmt IP</th>
+                                </tr>
+                            </thead>
+                            {% for node in node_info recursive %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ node }}</td>
+                                    <td>{{ node_info[node]["kind"] }}</td>
+                                    <td>{{ node_info[node]["image"] }}</td>
+                                    <td>{{ node_info[node]["mgmt_ip"] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 {% endif %}
             </div>
-            <div>
-                {% if lab_details.goals %}
-                    {% for goal in lab_details.goals %}
-                    <li>{{ goal }}</li>
-                    {% endfor %}
-                {% else %}
-                    No goals set
-                {% endif %}
+        </div>
+    </div>
+    <div></div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="container">
+                <h2>Goals</h2>
+                    {% if lab_details.goals %}
+                        <ol class="list-group">
+                            {% for goal in lab_details.goals %}
+                                <li class="list-group-item">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="formCheck-{{ loop.index }}">
+                                    <label class="form-check-label" for="formCheck-{{ loop.index }}">{{ goal }}</label>
+                                </div>
+                            {% endfor %}
+                    {% else %}
+                        <div>No goals set</div>
+                    {% endif %}
+                        </ol>
             </div>
-        {% if node_info.error %}
-            <div>
-                {{ node_info.error }}
+        </div>
+        <div class="col">
+            <div class="container">
+                <h2>Topology</h2>
+                <div id="diagram"></div>
             </div>
-        {% else %}
-            {% for node in node_info recursive %}
-            <li>
-                Name: {{ node }}
-                Kind: {{ node_info[node]["kind"] }}
-                Image: {{ node_info[node]["image"] }}
-                Mgmt IP: {{ node_info[node]["mgmt_ip"] }}
-            </li>
-            {% endfor %}
-        {% endif %}
-        <br>
-            <div id="diagram"></div>
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" type="button" name="deploy">Deploy lab</button>
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" type="button" name="destroy">Destroy lab</button>
-    {% endif %}
-    <br>
-    <a href={{ url_for("list_labs_view") }}>
-        <button class="btn btn-lg btn-primary btn-block" type="button" name="lablist">Back to lab list</button>
-    </a>
+        </div>
     </div>
 {% endblock %}
