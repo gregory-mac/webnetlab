@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 
 from core.settings import settings
 
@@ -17,9 +18,9 @@ app.include_router(router_auth)
 app.mount("/static", StaticFiles(directory="core/static"), name="static")
 
 
-@app.get("/")
-def root():
-    return {"message": "Hello World"}
+@app.get("/", response_class=RedirectResponse)
+def root() -> RedirectResponse:
+    return RedirectResponse(app.url_path_for("login"), status_code=303)
 
 
 if __name__ == "__main__":

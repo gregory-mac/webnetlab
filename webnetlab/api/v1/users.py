@@ -9,11 +9,6 @@ from api import dependencies
 router = APIRouter(prefix="/users", tags=["users"])
 
 
-@router.get("/", status_code=200)
-def root():
-    return "Graphs root"
-
-
 @router.post("/create", status_code=201, response_model=schemas.User)
 def add_user(user_create: schemas.UserCreate, db: Session = Depends(dependencies.get_db)) -> schemas.User:
     return crud.create(db, user_create)

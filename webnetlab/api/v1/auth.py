@@ -33,13 +33,14 @@ def user_signup(login=Form(), email=Form(), password=Form(), db: Session = Depen
 
 
 @router.post("/login", response_class=RedirectResponse)
-def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(dependencies.get_db)) -> RedirectResponse:
+def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(dependencies.get_db)) -> RedirectResponse:
     user = auth.authenticate(login=form_data.username, password=form_data.password, db=db)
     if not user:
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     access_token = auth.create_access_token(sub=user.id)
+    response = RedirectResponse("/lab/list", status_code=303)
     response.set_cookie(key="access_token", value=f"Bearer {access_token}", httponly=True)
-    return RedirectResponse("/lab/list", status_code=303)
+    return response
 
 
 @router.get("/logout", response_class=RedirectResponse, status_code=303)
