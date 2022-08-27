@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+500 Internal Server Error
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="text-center mt-5">
+        <div class="error mx-auto" data-text="500">
+            <p class="m-0">500</p>
+        </div>
+        <p class="text-dark mb-5 lead">Internal Server Error</p>
+        <p class="text-black-50 mb-0">Something went terribly wrong</p>
+    </div>
+</div>
+{% endblock %}
