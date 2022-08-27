@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends
 
 from sqlalchemy.orm import Session
 
-from core import crud
-from core import schemas
 from api import dependencies
+from core import crud, schemas
+
 
 router = APIRouter(prefix="/users", tags=["users"])
 

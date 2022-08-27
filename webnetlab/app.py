@@ -2,13 +2,12 @@ from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 
-from core.settings import settings
-
 from api import dependencies
 from api.v1.lab import router as router_lab
 from api.v1.graph import router as router_graph
 from api.v1.users import router as router_users
 from api.v1.auth import router as router_auth
+from core.settings import settings
 
 
 app = FastAPI(title="NetLab")

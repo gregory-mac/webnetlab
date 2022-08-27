@@ -5,8 +5,7 @@ from starlette.responses import HTMLResponse
 
 from fastapi import APIRouter
 
-from api import dependencies
-from api import functions
+from api import dependencies, functions
 from core.settings import settings
 
 

@@ -1,8 +1,6 @@
 from sqlalchemy.orm import Session
 
-from core import models
-from core import schemas
-from core import auth
+from core import models, schemas, auth
 
 
 def create(db: Session, new_user: schemas.UserCreate) -> models.user.User:

@@ -3,8 +3,7 @@ from pathlib import Path
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 
-from api import functions
-from api import dependencies
+from api import functions, dependencies
 from core.settings import settings
 
 

@@ -4,9 +4,8 @@ from datetime import datetime, timedelta
 from sqlalchemy.orm.session import Session
 from jose import jwt
 
-from core import models
-from core import auth
 from api import functions
+from core import models, auth
 from core.settings import settings
 
 

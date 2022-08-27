@@ -1,15 +1,13 @@
 from typing import Generator, Optional
 from pydantic import BaseModel
 
-from sqlalchemy.orm.session import Session
-
 from fastapi import Depends, HTTPException, status
 from fastapi.templating import Jinja2Templates
 
+from sqlalchemy.orm.session import Session
 from jose import jwt, JWTError
 
-from core import auth
-from core import models
+from core import auth, models
 from core.settings import settings
 from core.db.session import session
 

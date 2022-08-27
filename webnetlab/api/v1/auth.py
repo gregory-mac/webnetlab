@@ -4,11 +4,8 @@ from fastapi.responses import RedirectResponse
 
 from sqlalchemy.orm.session import Session
 
-from core import crud
-from core import schemas
 from api import dependencies
-from core import auth
-from core import models
+from core import crud, schemas, auth, models
 from core.views.auth_login import router as router_auth_login
 from core.views.auth_signup import router as router_auth_register
 

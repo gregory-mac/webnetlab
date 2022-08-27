@@ -1,9 +1,8 @@
-from core.settings import settings
-from api.functions.lab import deploy_lab, destroy_lab
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 from fastapi.responses import RedirectResponse
 
-from api import dependencies
+from api.functions import lab
+from core.settings import settings
 from core.views.lab_screen import router as router_lab_screen
 from core.views.lab_list import router as router_lab_list
 
@@ -33,7 +32,7 @@ def check_lab_status():
 # @router.post("/{lab_name}/deploy", status_code=200)
 # def deploy_lab_button(lab_name: str):
 #     path_to_clab_yaml = f"{settings.path_to_lab_files}{lab_name}/{lab_name}.clab.yml"
-#     deploy_lab(path_to_clab_yaml)
+#     lab.deploy_lab(path_to_clab_yaml)
 #     return {"success": "lab is deployed"}
 
 
