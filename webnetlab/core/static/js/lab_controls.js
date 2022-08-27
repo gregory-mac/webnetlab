@@ -18,6 +18,50 @@ function unlock_destroy_button() {
 	$("#destroy").removeClass('disabled');
 }
 
+function lock_status_button() {
+	$("#lab-status").addClass('disabled');
+}
+
+function unlock_status_button() {
+	$("#lab-status").removeClass('disabled');
+}
+
+function update_status() {
+	let current_status = $("#lab-status");
+	let current_status_indicator = current_status.children();
+
+	$.ajax({
+		url: "/lab/status",
+		type: "POST",
+		dataType: "json",
+		success: function(response) {
+			if (response["is_running"]===true){
+				current_status.text("Lab status: online (" + response["lab_name"] + ")");
+				current_status.prepend(current_status_indicator);
+				$("#lab-status-indicator")
+					.css('color', 'ForestGreen')
+					.addClass("tada animated infinite");
+			} else {
+				current_status.text("Lab status: offline");
+				current_status.prepend(current_status_indicator);
+				$("#lab-status-indicator")
+					.css('color', 'coral')
+					.removeClass("tada animated infinite");
+			}
+			return response;
+		},
+		error: function(error){
+			console.log(error);
+			current_status.text("Lab status: unknown");
+			current_status.prepend(current_status_indicator);
+			$("#lab-status-indicator")
+				.css('color', 'gray')
+				.removeClass("tada animated infinite");
+			return error;
+		}
+	});
+}
+
 $(function(){
 	$("#deploy").on("click", function(){
 		lock_deploy_button();
@@ -64,38 +108,10 @@ $(function(){
 	});
 });
 
-function update_status() {
-	let current_status = $("#lab-status");
-	let current_status_indicator = current_status.children();
-
-	$.ajax({
-		url: "/lab/status",
-		type: "POST",
-		dataType: "json",
-		success: function(response) {
-			if (response["is_running"]===true){
-				current_status.text("Lab status: online (" + response["lab_name"] + ")");
-				current_status.prepend(current_status_indicator);
-				$("#lab-status-indicator")
-					.css('color', 'ForestGreen')
-					.addClass("tada animated infinite");
-			} else {
-				current_status.text("Lab status: offline");
-				current_status.prepend(current_status_indicator);
-				$("#lab-status-indicator")
-					.css('color', 'coral')
-					.removeClass("tada animated infinite");
-			}
-			return response;
-		},
-		error: function(error){
-			console.log(error);
-			current_status.text("Lab status: unknown");
-			current_status.prepend(current_status_indicator);
-			$("#lab-status-indicator")
-				.css('color', 'gray')
-				.removeClass("tada animated infinite");
-			return error;
-		}
+$(function(){
+	$("#lab-status").on("click", function(){
+		lock_status_button();
+		update_status();
+		unlock_status_button();
 	});
-}
+});
