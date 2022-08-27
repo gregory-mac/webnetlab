@@ -1,9 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 
 from core.settings import settings
 
+from api import dependencies
 from api.v1.lab import router as router_lab
 from api.v1.graph import router as router_graph
 from api.v1.users import router as router_users
@@ -11,9 +12,9 @@ from api.v1.auth import router as router_auth
 
 
 app = FastAPI(title="NetLab")
-app.include_router(router_lab)
-app.include_router(router_graph)
-app.include_router(router_users)
+app.include_router(router_lab, dependencies=[Depends(dependencies.get_current_user)])
+app.include_router(router_graph, dependencies=[Depends(dependencies.get_current_user)])
+app.include_router(router_users, dependencies=[Depends(dependencies.get_current_user)])
 app.include_router(router_auth)
 app.mount("/static", StaticFiles(directory="core/static"), name="static")
 

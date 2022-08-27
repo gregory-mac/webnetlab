@@ -16,7 +16,7 @@ DEPLOYED_LAB = False
 DEPLOYED_LAB_NAME = ""
 
 
-@router.get("/", response_class=RedirectResponse, status_code=303, dependencies=[Depends(dependencies.get_current_user)])
+@router.get("/", response_class=RedirectResponse, status_code=303)
 def root():
     return router.url_path_for("list_labs_view")
 

@@ -49,6 +49,6 @@ async def logout(response: Response):
     return router.url_path_for("login_view")
 
 
-@router.get("/me", response_model=schemas.User)
+@router.get("/me", response_model=schemas.User, dependencies=[Depends(dependencies.get_current_user)])
 def user_me(current_user: models.user.User = Depends(dependencies.get_current_user)) -> models.user.User:
     return current_user
