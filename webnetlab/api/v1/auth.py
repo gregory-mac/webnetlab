@@ -38,7 +38,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     if not user:
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     access_token = auth.create_access_token(sub=user.id)
-    response = RedirectResponse("/lab/list", status_code=303)
+    response = RedirectResponse("/lab", status_code=303)
     response.set_cookie(key="access_token", value=f"Bearer {access_token}", httponly=True)
     return response
 

@@ -8,7 +8,7 @@ from api import dependencies
 from core.settings import settings
 
 
-router = APIRouter(prefix="/open")
+router = APIRouter()
 
 
 @router.get("/{lab_name}", status_code=200, response_class=HTMLResponse)

@@ -10,7 +10,7 @@ from api import functions
 from core.settings import settings
 
 
-router = APIRouter(prefix="/list")
+router = APIRouter()
 
 
 @router.get("/", status_code=200, response_class=HTMLResponse)
