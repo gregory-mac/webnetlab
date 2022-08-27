@@ -26,7 +26,6 @@ $(window).on("load", function () {
         url: "/graph/" + lab_name + "/topology",
         type: "GET",
         success: function(response) {
-            console.log("Got topology data");
             render_graph(response);
         },
         error: function(error){
