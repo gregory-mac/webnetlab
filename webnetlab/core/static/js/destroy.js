@@ -3,19 +3,15 @@ function isDone(timestamp) {
 }
 
 function lock_destroy_button() {
-	$("button[name='destroy']")
-		.prop('disabled', true)
-		.addClass('is-loading');
+	$("#destroy").addClass('disabled');
 }
 
 function unlock_destroy_button() {
-	$("button[name='destroy']")
-		.prop('disabled', false)
-		.removeClass('is-loading');
+	$("#destroy").removeClass('disabled');
 }
 
 $(function(){
-	$("button[name='destroy']").on("click", function(){
+	$("#destroy").on("click", function(){
 		lock_destroy_button();
         let lab_name = window.location.pathname.split("/").pop()
 		$.ajax({
