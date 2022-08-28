@@ -23,7 +23,12 @@ List scenarios
                             {% for lab in lab_table %}
                                 <tr>
                                     <td><a href={{ "/lab/" + lab }}>{{ lab_table[lab]["name"] }}</a></td>
-                                    <td>{{ lab_table[lab]["difficulty"] }}</td>
+                                    <td>
+                                        {% set difficulty = lab_table[lab]["difficulty"] | int %}
+                                        {% for i in range(difficulty) %}
+                                            <i class="fas fa-star" style="color: gold"></i>
+                                        {% endfor %}
+                                    </td>
                                     <td>{{ lab_table[lab]["author"] }}</td>
                                 </tr>
                             {% endfor %}
