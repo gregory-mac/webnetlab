@@ -58,7 +58,7 @@
                                     <th>Host</th>
                                     <th>Kind</th>
                                     <th>Image</th>
-                                    <th>Mgmt IP</th>
+                                    <th>SSH IP:port</th>
                                 </tr>
                             </thead>
                             {% for node in node_info recursive %}
@@ -67,7 +67,7 @@
                                     <td>{{ node }}</td>
                                     <td>{{ node_info[node]["kind"] }}</td>
                                     <td>{{ node_info[node]["image"] }}</td>
-                                    <td>{{ node_info[node]["mgmt_ip"] }}</td>
+                                    <td>{{ node_info[node]["ssh_port"] }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>

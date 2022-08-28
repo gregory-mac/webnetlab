@@ -35,7 +35,7 @@ def get_node_information(lab_name: str) -> dict:
     try:
         for node in configuration["topology"]["nodes"]:
             node_info[node] = {}
-            node_info[node]["mgmt_ip"] = configuration["topology"]["nodes"][node]["mgmt_ipv4"]
+            node_info[node]["ssh_port"] = f'{settings.server_ip}:{configuration["topology"]["nodes"][node]["ports"][0].split(":")[0]}'
             node_info[node]["kind"] = configuration["topology"]["nodes"][node]["kind"]
             node_info[node]["image"] = configuration["topology"]["nodes"][node]["image"]
         return node_info
