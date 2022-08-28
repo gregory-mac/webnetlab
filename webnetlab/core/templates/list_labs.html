@@ -22,7 +22,7 @@ List scenarios
                         {% if lab_table %}
                             {% for lab in lab_table %}
                                 <tr>
-                                    <td><a href={{ "/lab/" + lab }}>{{ lab }}</a></td>
+                                    <td><a href={{ "/lab/" + lab }}>{{ lab_table[lab]["name"] }}</a></td>
                                     <td>{{ lab_table[lab]["difficulty"] }}</td>
                                     <td>{{ lab_table[lab]["author"] }}</td>
                                 </tr>

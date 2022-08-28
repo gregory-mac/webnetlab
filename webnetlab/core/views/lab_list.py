@@ -20,6 +20,10 @@ def list_labs_view(request: Request):
         lab_table[lab] = {}
         lab_details = functions.lab.parse_lab_specification(Path(settings.path_to_lab_files) / lab / settings.lab_spec_filename)
         try:
+            lab_table[lab]["name"] = lab_details["name"]
+        except KeyError:
+            lab_table[lab]["name"] = "---"
+        try:
             lab_table[lab]["author"] = lab_details["author"]
         except KeyError:
             lab_table[lab]["author"] = "---"
