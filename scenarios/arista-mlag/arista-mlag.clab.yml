@@ -10,25 +10,25 @@ topology:
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
-      ports: [2001:22]
+      ports: ["2001:22"]
       startup-config: ./ini_cfg/mlag1.cfg
     mlag2:
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
-      ports: [2002:22]
+      ports: ["2002:22"]
       startup-config: ./ini_cfg/mlag2.cfg
     solo1:
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
-      ports: [2003:22]
+      ports: ["2003:22"]
       startup-config: ./ini_cfg/solo1.cfg
     solo2:
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
-      ports: [2004:22]
+      ports: ["2004:22"]
       startup-config: ./ini_cfg/solo2.cfg
 
   links:

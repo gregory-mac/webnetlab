@@ -10,25 +10,25 @@ topology:
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
-      ports: [2001:22]
+      ports: ["2001:22"]
       startup-config: ./ini_cfg/R1.cfg
     R2:
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
-      ports: [2002:22]
+      ports: ["2002:22"]
       startup-config: ./ini_cfg/R2.cfg
     R3:
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
-      ports: [2003:22]
+      ports: ["2003:22"]
       startup-config: ./ini_cfg/R3.cfg
     R4:
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
-      ports: [2004:22]
+      ports: ["2004:22"]
       startup-config: ./ini_cfg/R4.cfg
 
   links:
