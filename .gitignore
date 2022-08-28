@@ -161,6 +161,3 @@ cython_debug/
 
 # SQLite Database
 *.db
-
-# Scenarios folder
-scenarios/
