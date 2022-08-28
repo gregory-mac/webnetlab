@@ -1,4 +1,5 @@
 import subprocess
+import re
 from pathlib import Path
 import yaml
 
@@ -57,6 +58,9 @@ def check_status():
     cmd = "sudo containerlab inspect --all"
     output = subprocess.run(cmd.split(), capture_output=True)
     if "no containers found" in output.stderr.decode("utf-8"):
-        return False
-    return True
-
+        return None
+    status = {"is_running": True, "lab_name": ""}
+    lab_name_regex = r".*/(.+)\.clab\.yml"
+    lab_name = re.search(lab_name_regex, output.stdout.decode("utf-8"))[1]
+    status["lab_name"] = lab_name
+    return status
