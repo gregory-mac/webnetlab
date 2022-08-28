@@ -115,3 +115,7 @@ $(function(){
 		unlock_status_button();
 	});
 });
+
+$(window).on("load", function () {
+	update_status();
+});
