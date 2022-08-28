@@ -11,9 +11,6 @@ router = APIRouter(prefix="/lab", tags=["lab"])
 router.include_router(router_lab_screen)
 router.include_router(router_lab_list)
 
-DEPLOYED_LAB = False
-DEPLOYED_LAB_NAME = ""
-
 
 @router.get("/", response_class=RedirectResponse, status_code=303)
 def root():
@@ -22,30 +19,14 @@ def root():
 
 @router.post("/status", status_code=200)
 def check_lab_status():
-    global DEPLOYED_LAB
-    global DEPLOYED_LAB_NAME
-    status = {"is_running": DEPLOYED_LAB,
-              "lab_name": DEPLOYED_LAB_NAME}
-    return status
-
-
-# @router.post("/{lab_name}/deploy", status_code=200)
-# def deploy_lab_button(lab_name: str):
-#     path_to_clab_yaml = f"{settings.path_to_lab_files}{lab_name}/{lab_name}.clab.yml"
-#     lab.deploy_lab(path_to_clab_yaml)
-#     return {"success": "lab is deployed"}
+    return lab.check_status()
 
 
 @router.post("/{lab_name}/deploy", status_code=200)
 def deploy_lab_button(lab_name: str):
-    global DEPLOYED_LAB
-    global DEPLOYED_LAB_NAME
-
-    from time import sleep
+    path_to_clab_yaml = f"{settings.path_to_lab_files}{lab_name}/{lab_name}.clab.yml"
     try:
-        sleep(2)
-        DEPLOYED_LAB = True
-        DEPLOYED_LAB_NAME = lab_name
+        lab.deploy_lab(path_to_clab_yaml)
         return {"success": "lab is deployed"}
     except Exception as e:
         return {"error": "something went wrong during the deployment process, {}".format(e)}
@@ -53,14 +34,9 @@ def deploy_lab_button(lab_name: str):
 
 @router.post("/{lab_name}/destroy", status_code=200)
 def destroy_lab_button(lab_name: str):
-    global DEPLOYED_LAB
-    global DEPLOYED_LAB_NAME
-
-    from time import sleep
+    path_to_clab_yaml = f"{settings.path_to_lab_files}{lab_name}/{lab_name}.clab.yml"
     try:
-        sleep(2)
-        DEPLOYED_LAB = False
-        DEPLOYED_LAB_NAME = ""
+        lab.destroy_lab(path_to_clab_yaml)
         return {"success": "lab is destroyed"}
     except Exception as e:
-        return {"error": "something went wrong while stopping the lab, {}".format(e)}
+        return {"error": "something went wrong during destruction process, {}".format(e)}

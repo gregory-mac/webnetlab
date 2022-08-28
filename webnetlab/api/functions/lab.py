@@ -49,5 +49,14 @@ def deploy_lab(clab_yml: str):
 
 
 def destroy_lab(clab_yml: str):
-    cmd = f"sudo containerlab destroy --clean -t {clab_yml}"
+    cmd = f"sudo containerlab destroy --cleanup -t {clab_yml}"
     subprocess.run(cmd.split())
+
+
+def check_status():
+    cmd = "sudo containerlab inspect --all"
+    output = subprocess.run(cmd.split(), capture_output=True)
+    if "no containers found" in output.stderr.decode("utf-8"):
+        return False
+    return True
+
