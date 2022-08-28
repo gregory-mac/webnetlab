@@ -1,0 +1,31 @@
+name: arista-mlag
+
+mgmt:
+  network: clab_mgmt
+  ipv4_subnet: 192.168.24.0/24
+
+topology:
+  defaults:
+    kind: ceos
+    image: ceos:4.28.0F
+    env: {'INTFTYPE': 'et'}
+
+  nodes:
+    mlag1:
+      startup-config: ./ini_cfg/arista-mlag/mlag1.cfg
+    mlag2:
+      startup-config: ./ini_cfg/arista-mlag/mlag2.cfg
+    solo1:
+      startup-config: ./ini_cfg/arista-mlag/solo1.cfg
+    solo2:
+      startup-config: ./ini_cfg/arista-mlag/solo2.cfg
+
+  links:
+    - endpoints: ["mlag1:et48", "mlag2:et48"]
+    - endpoints: ["mlag1:et49", "mlag2:et49"]
+    - endpoints: ["mlag1:et1", "solo1:et1"]
+    - endpoints: ["mlag2:et1", "solo1:et2"]
+    - endpoints: ["mlag1:et2", "solo2:et1"]
+    - endpoints: ["mlag2:et2", "solo2:et2"]
+
+
