@@ -1,30 +1,34 @@
 name: arista-ospf
 
+mgmt:
+  network: mgmt_network
+  ipv4_subnet: 192.168.100.0/24
+
 topology:
   nodes:
     R1:
-      mgmt_ipv4: 192.168.20.10
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
+      ports: ["2001:22"]
       startup-config: ./ini_cfg/R1.cfg
     R2:
-      mgmt_ipv4: 192.168.20.11
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
+      ports: ["2002:22"]
       startup-config: ./ini_cfg/R2.cfg
     R3:
-      mgmt_ipv4: 192.168.20.12
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
+      ports: ["2003:22"]
       startup-config: ./ini_cfg/R3.cfg
     R4:
-      mgmt_ipv4: 192.168.20.13
       kind: ceos
       image: ceos:4.28.0F
       env: {'INTFTYPE': 'et'}
+      ports: ["2004:22"]
       startup-config: ./ini_cfg/R4.cfg
 
   links:
