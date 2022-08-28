@@ -29,11 +29,6 @@ def create_topology(lab_name: str) -> dict:
     for node in nodes_info:
         topology["nodes"].append({
             "name": node,
-            "meta": {
-                "kind": nodes_info[node]["kind"],
-                "image": nodes_info[node]["image"],
-                "mgmt_ip": nodes_info[node]["mgmt_ipv4"],
-            },
             "icon": get_icon_path(nodes_info[node]["kind"]),
         })
 

@@ -11,13 +11,12 @@ function render_graph(topology) {
         ticks: 1000,
         positionCache: false,
         bundle: true,
-        tooltip: 'click',
     });
     diagram.on('rendered', () => {
         d3.selectAll('.link textPath tspan').attr('x', '60');
         d3.selectAll('.link textPath.reverse tspan').attr('x', '-60');
     });
-    diagram.init('interface', 'mgmt_ip', 'kind', 'image');
+    diagram.init('interface');
 }
 
 $(window).on("load", function () {
