@@ -36,13 +36,13 @@ function update_status() {
 		dataType: "json",
 		success: function(response) {
 			if (response["is_running"]===true){
-				current_status.text("Lab status: online (" + response["lab_name"] + ")");
+				current_status.text("\xa0Lab status: online (" + response["lab_name"] + ")");
 				current_status.prepend(current_status_indicator);
 				$("#lab-status-indicator")
 					.css('color', 'ForestGreen')
 					.addClass("tada animated infinite");
 			} else {
-				current_status.text("Lab status: offline");
+				current_status.text("\xa0Lab status: offline");
 				current_status.prepend(current_status_indicator);
 				$("#lab-status-indicator")
 					.css('color', 'coral')
@@ -52,7 +52,7 @@ function update_status() {
 		},
 		error: function(error){
 			console.log(error);
-			current_status.text("Lab status: unknown");
+			current_status.text("\xa0Lab status: unknown");
 			current_status.prepend(current_status_indicator);
 			$("#lab-status-indicator")
 				.css('color', 'gray')
